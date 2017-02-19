@@ -1,9 +1,8 @@
 require 'rails_helper'
-require './lib/comic.rb'
 
 RSpec.describe ComicFetch do
   describe '#perform', :vcr do
-    let(:comics) { ComicFetch.new.perform }
+    let(:comics) { ComicFetch.new.comic_results }
 
     context 'when valid' do
       subject(:status) { comics.code }

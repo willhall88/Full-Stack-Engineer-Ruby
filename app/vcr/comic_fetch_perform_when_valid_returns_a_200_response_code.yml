@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://gateway.marvel.com/v1/public/comics?apikey=0bf84a0c159cc7d2bb990d32da985b27&hash=08166bfbde1c0999a0988cbf68c5d308&limit=1&orderBy=-onsaleDate&ts=1487514272
+    uri: http://gateway.marvel.com/v1/public/comics?apikey=0bf84a0c159cc7d2bb990d32da985b27&hash=87b9dd178b9190e2a3b3d1dbbfa1fad7&limit=1&orderBy=-onsaleDate&ts=1487520955
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 19 Feb 2017 14:29:05 GMT
+      - Sun, 19 Feb 2017 16:20:25 GMT
       Connection:
       - keep-alive
       Transfer-Encoding:
@@ -107,5 +107,5 @@ http_interactions:
         LmNvbS92MS9wdWJsaWMvY29taWNzLzQxNTMwL2V2ZW50cyIsIml0ZW1zIjpb
         XSwicmV0dXJuZWQiOjB9fV19fQ==
     http_version: 
-  recorded_at: Sun, 19 Feb 2017 14:24:35 GMT
+  recorded_at: Sun, 19 Feb 2017 16:15:56 GMT
 recorded_with: VCR 3.0.3
