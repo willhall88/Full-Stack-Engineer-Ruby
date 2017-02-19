@@ -3,3 +3,4 @@
   .c-comic
     .c-comic__title
       = comic['title']
+    %img{class: 'c-comic__cover-image', src: "#{comic['thumbnail']['path']}.jpg", alt:"MDN"}
