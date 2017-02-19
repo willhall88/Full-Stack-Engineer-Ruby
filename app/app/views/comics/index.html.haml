@@ -1,6 +1,11 @@
-%h1 Marvel
-- @comics.each do |comic|
-  .c-comic
-    .c-comic__title
-      = comic['title']
-    %img{class: 'c-comic__cover-image', src: "#{comic['thumbnail']['path']}.jpg", alt:"MDN"}
+.o-grid
+  - @comics.each do |comic|
+    .c-comic__wrapper
+      .c-comic
+        .c-comic__image-wrapper
+          .c-comic__image-inner
+            %img{class: 'c-comic__cover-image', src: "#{comic['thumbnail']['path']}.jpg", alt:"MDN"}
+        .c-comic__title-wrapper
+          .c-comic__title
+            = comic['title']
+        %a{class: 'c-comic__link u-faux-block-link__overlay'}

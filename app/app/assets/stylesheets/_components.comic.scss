@@ -1,0 +1,52 @@
+.c-comic__wrapper {
+  margin: 1rem;
+}
+
+.c-comic {
+  position: relative;
+  border: black solid 1rem;
+  transition: border 0.5s, transform 0.35s;
+}
+
+.c-comic__title-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  align-items: flex-end;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.35s;
+}
+
+.c-comic__title {
+  color: white;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin: 1rem;
+}
+
+.c-comic__image-wrapper {
+  display: inline-block;
+}
+
+.c-comic__cover-image {
+  max-width: 100%;
+  opacity: 1;
+  transition: opacity 0.5s, transform 0.35s;
+}
+
+.c-comic__wrapper:hover .c-comic__cover-image {
+  opacity: 0.4;
+  transition: opacity 0.5s, transform 0.35s;
+}
+
+.c-comic__wrapper:hover .c-comic__title-wrapper {
+  opacity: 1;
+  transition: opacity 0.5s, transform 0.35s;
+}
+
+.c-comic__wrapper:hover .c-comic {
+  border: red solid 1rem;
+  transition: border 0.5s, transform 0.35s;
+}
