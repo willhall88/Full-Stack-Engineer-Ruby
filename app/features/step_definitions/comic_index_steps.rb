@@ -1,8 +1,9 @@
 When(/^I am on the homepage$/) do
-  visit "/"
+  visit '/'
 end
 
-Then(/^I should see "([^"]*)"$/) do |arg1|
+Then(/^I should see a list of comic book titles$/) do
   @comics = ComicFetch.new.result_data
-  expect(page).to have_content(@comics['title'])
+  elements = all('.c-comic__title')
+  expect(elements.length).to eq 20
 end
