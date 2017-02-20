@@ -52,7 +52,7 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   VCR.configure do |c|
-    c.cassette_library_dir = 'vcr'
+    c.cassette_library_dir = 'spec/vcr'
     c.hook_into :webmock
 
     c.default_cassette_options = {
