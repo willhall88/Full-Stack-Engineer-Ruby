@@ -1,6 +1,6 @@
 # Fetch Comic data from Marvel API
 class ComicFetch
-  DEFAULTS = { orderBy: '-onsaleDate', limit: 20 }
+  DEFAULTS = { orderBy: '-onsaleDate', limit: 15 }
 
   attr_reader :comic_results
 
