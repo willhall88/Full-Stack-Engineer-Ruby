@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe ComicFetch do
+RSpec.describe MarvelApiClient do
   describe '#perform' do
     before(:each) do
       comic_api.perform
     end
 
     context 'when valid', :vcr do
-      let(:comic_api) { ComicFetch.new(limit: 1) }
+      let(:comic_api) { MarvelApiClient.new(limit: 1) }
 
       subject(:status) { comic_api.result_data['code'] }
       it 'returns a 200 response code' do
