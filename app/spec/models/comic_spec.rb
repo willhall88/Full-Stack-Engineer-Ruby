@@ -29,7 +29,9 @@ RSpec.describe Comic, type: :model do
     context 'when not valid' do
       let(:comic) { Comic.new }
       subject(:thumbnail) { comic.thumbnail }
-      it { is_expected.to eq 'Image: Not Found' }
+      it 'show not found image' do
+        is_expected.to eq 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'
+      end
     end
   end
 end

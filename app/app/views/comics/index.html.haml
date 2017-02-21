@@ -1,5 +1,3 @@
 .o-grid
   - @comics.each_with_index do |comic, index|
     = render 'comic', {comic: comic, index: index}
-  %a{class: 'c-button c-button--next js-page-next', id:'next', href: '#'}
-    Next Page
