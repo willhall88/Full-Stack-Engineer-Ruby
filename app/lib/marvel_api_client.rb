@@ -2,8 +2,7 @@
 class MarvelApiClient
   DEFAULTS = { orderBy: '-onsaleDate', limit: 15 }
 
-  attr_reader :result_data
-  attr_reader :comics
+  attr_reader :result_data, :comics, :options
 
   def initialize(params = {})
     @server = Marvelite::API::Client.new(
@@ -21,7 +20,6 @@ class MarvelApiClient
   def process_data(result_data)
     comics_data = result_data['data']['results']
     @comics = comics_data.map do |comic_data|
-      debugger
       Comic.new(comic_data)
     end
   end
