@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'marvelite'
 gem 'dotenv'
 
+# React
+gem 'react-rails', github: 'reactjs/react-rails'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -55,4 +58,5 @@ group :test do
   gem 'vcr'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
