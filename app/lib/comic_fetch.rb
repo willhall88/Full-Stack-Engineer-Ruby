@@ -2,21 +2,26 @@
 class ComicFetch
   DEFAULTS = { orderBy: '-onsaleDate', limit: 15 }
 
-  attr_reader :comic_results
+  attr_reader :result_data
+  attr_reader :comics
 
-  def initialize
-    perform
-  end
-
-  def perform
-    api = Marvelite::API::Client.new(
+  def initialize(params = {})
+    @server = Marvelite::API::Client.new(
       public_key: ENV['MARVEL_API_PUBLIC_KEY'],
       private_key: ENV['MARVEL_API_PRIVATE_KEY']
     )
-    @comic_results = api.comics(DEFAULTS)
+    @options = DEFAULTS.merge(params)
   end
 
-  def result_data
-    @comic_results.data['results']
+  def perform
+    @result_data = @server.comics(@options)
+    process_data(@result_data)
+  end
+
+  def process_data(result_data)
+    comics_data = result_data['data']['results']
+    @comics = comics_data.map do |comic_data|
+      Comic.new(comic_data)
+    end
   end
 end
