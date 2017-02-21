@@ -1,0 +1,9 @@
+.c-comic__wrapper
+  .c-comic{id: "item-#{index}"}
+    .c-comic__image-wrapper
+      .c-comic__image-inner
+        %img{class: 'c-comic__cover-image', src: "z#{comic['thumbnail']['path']}.jpg", alt:"MDN"}
+    .c-comic__title-wrapper
+      .c-comic__title
+        = comic['title']
+    %a{class: 'c-comic__link u-faux-block-link__overlay'}
