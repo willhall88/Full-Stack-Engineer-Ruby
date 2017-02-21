@@ -20,7 +20,7 @@ class MarvelApiClient
   def process_data(result_data)
     comics_data = result_data['data']['results']
     @comics = comics_data.map do |comic_data|
-      Comic.new(comic_data)
+      Comic.new(comic_data).build
     end
   end
 end

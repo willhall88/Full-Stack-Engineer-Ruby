@@ -4,5 +4,6 @@ class ComicsController < ApplicationController
     @api.perform
 
     @comics = @api.comics
+    render json: @comics
   end
 end
