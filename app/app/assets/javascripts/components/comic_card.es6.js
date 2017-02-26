@@ -1,8 +1,12 @@
-var React = require('react');
+import React from 'react';
 
-const ComicCard = React.createClass({
-  render: function() {
-    return (
+class ComicCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return(
       <div className="c-comic__wrapper">
         <div className="c-comic">
           <div className="c-comic__image-wrapper">
@@ -20,6 +24,5 @@ const ComicCard = React.createClass({
       </div>
     );
   }
-});
-
-export {ComicCard};
+}
+module.exports = ComicCard;
