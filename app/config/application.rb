@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 
 module App
   class Application < Rails::Application
-    config.react.addons = true
+    config.browserify_rails.commandline_options = "-t babelify --extension=\".es6.js\""
     Dotenv.load
     config.autoload_paths += %W(#{config.root}/lib)
     # Settings in config/environments/* take precedence over those specified here.

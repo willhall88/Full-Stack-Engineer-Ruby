@@ -34,7 +34,8 @@ gem 'marvelite'
 gem 'dotenv'
 
 # React
-gem 'react-rails', github: 'reactjs/react-rails'
+gem 'browserify-rails'
+gem 'react-rails'
 
 group :development, :test do
   gem 'rspec-rails'
