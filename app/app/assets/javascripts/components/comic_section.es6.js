@@ -14,14 +14,22 @@ class ComicsSection extends React.Component {
   }
 
   _handleClick(e) {
+    var offsetVal = 15;
+    if(e.target.classList.contains('c-page__prev')) {
+      offsetVal = -15;
+    }
     e.preventDefault();
-    this._fetchPage();
+    this._fetchPage(offsetVal);
   }
 
-  _fetchPage() {
+  _fetchPage(val) {
     return new Promise(
       (resolve, reject) => {
-        var newOffset = +this.state.offset + 15;
+        var newOffset = +this.state.offset + val;
+        if(newOffset < 0){
+          resolve();
+          return;
+        };
         fetch(`/comics/index?offset=${newOffset}`)
           .then((response) => response.json())
           .then((responseJson) => {
@@ -47,6 +55,7 @@ class ComicsSection extends React.Component {
         <div className="c-comic__outer-wrapper">
           {cardsNode}
         </div>
+        <a className="c-page__prev js-pagination" href='#' onClick={this._handleClick}>Prev Page</a>
         <a className="c-page__next js-pagination" href='#' onClick={this._handleClick}>Next Page</a>
       </div>
     )

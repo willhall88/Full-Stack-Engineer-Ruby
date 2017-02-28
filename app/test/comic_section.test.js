@@ -26,20 +26,56 @@ describe('ComicSection component', function() {
 });
 
 describe('pagination', function() {
-  fetchMock
-    .mock('/comics/index?offset=15', 'GET', {
-      comics:[{id: 2, title: 'title2', thumb: 'thumb'}],
-      offset:15
-    });
-  it('changes pages', function(done) {
+  it('changes to next page', function(done) {
+    fetchMock
+      .mock('/comics/index?offset=15', 'GET', {
+        comics:[{id: 2, title: 'title2', thumb: 'thumb'}],
+        offset:15
+      });
     const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}], offset:0};
     const comicSection = renderIntoDocument(
       <ComicSection data={data} />
     );
-    comicSection._fetchPage()
+    comicSection._fetchPage(15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(15);
         expect(fetchMock.called('/comics/index?offset=15'));
+        done();
+      })
+      .catch(function(err) {
+        done(err);
+      })
+  });
+
+  it('changes to prev page', function(done) {
+    fetchMock
+      .mock('/comics/index?offset=0', 'GET', {
+        comics:[{id: 1, title: 'title', thumb: 'thumb'}],
+        offset:0
+      });
+    const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:15};
+    const comicSection = renderIntoDocument(
+      <ComicSection data={data} />
+    );
+    comicSection._fetchPage(-15)
+      .then(function() {
+        expect(comicSection.state.offset).to.eq(0);
+        expect(fetchMock.called('/comics/index?offset=0'));
+        done();
+      })
+      .catch(function(err) {
+        done(err);
+      })
+  });
+
+  it('will not allow previous pages past first page', function(done) {
+    const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:0};
+    const comicSection = renderIntoDocument(
+      <ComicSection data={data} />
+    );
+    comicSection._fetchPage(-15)
+      .then(function() {
+        expect(comicSection.state.offset).to.eq(0);
         done();
       })
       .catch(function(err) {
