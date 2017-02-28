@@ -17,7 +17,7 @@ describe('ComicSection component', function() {
       comics:[{id: 1, title: 'title', thumb: 'thumb'}, {id: 2, title: 'title', thumb: 'thumb'}],
       offset:0
     };
-    const comicSection = renderIntoDocument(<ComicSection data={data} />);
+    const comicSection = renderIntoDocument(<ComicSection comics={data.comics} offset={data.offset} />);
     const instances = scryRenderedComponentsWithType(comicSection, ComicCard).length;
     expect(instances).to.be.at.least(2);
   });
@@ -31,7 +31,7 @@ describe('Pagination', function() {
         offset:15
       });
     const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}], offset:0};
-    const comicSection = renderIntoDocument(<ComicSection data={data} />);
+    const comicSection = renderIntoDocument(<ComicSection comics={data.comics} offset={data.offset} />);
     comicSection._fetchPage(15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(15);
@@ -50,7 +50,7 @@ describe('Pagination', function() {
         offset:0
       });
     const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:15};
-    const comicSection = renderIntoDocument(<ComicSection data={data} />);
+    const comicSection = renderIntoDocument(<ComicSection comics={data.comics} offset={data.offset} />);
     comicSection._fetchPage(-15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(0);
@@ -64,7 +64,7 @@ describe('Pagination', function() {
 
   it('will not allow previous pages past first page', function(done) {
     const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:0};
-    const comicSection = renderIntoDocument(<ComicSection data={data} />);
+    const comicSection = renderIntoDocument(<ComicSection comics={data.comics} offset={data.offset} />);
     comicSection._fetchPage(-15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(0);

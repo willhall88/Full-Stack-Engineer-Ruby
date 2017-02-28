@@ -6,19 +6,19 @@ class ComicsSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comics: props.data.comics,
-      offset: props.data.offset
+      comics: props.comics,
+      offset: props.offset
     };
 
     this._handleClick = this._handleClick.bind(this);
   }
 
   _handleClick(e) {
+    e.preventDefault();
     var offsetVal = 15;
     if(e.target.classList.contains('c-page__prev')) {
       offsetVal = -15;
     }
-    e.preventDefault();
     this._fetchPage(offsetVal);
   }
 

@@ -4,7 +4,6 @@ class ComicsController < ApplicationController
     @api.perform
     @offset = params[:offset] || 0
     @comics = @api.comics
-    @data = {offset: @offset, comics: @comics}
-    render json: @data
+    render json: { offset: @offset, comics: @comics }
   end
 end
