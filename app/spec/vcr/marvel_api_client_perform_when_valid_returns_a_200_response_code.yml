@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://gateway.marvel.com/v1/public/comics?apikey=0bf84a0c159cc7d2bb990d32da985b27&hash=264b2170262f9c3dcfcc760202067ec6&limit=1&orderBy=-onsaleDate&ts=1487707411
+    uri: http://gateway.marvel.com/v1/public/comics?apikey=0bf84a0c159cc7d2bb990d32da985b27&hash=44a7da6de98839f442bb0ddfc0fba2f1&limit=1&offset=0&orderBy=-onsaleDate&ts=1488300917
     body:
       encoding: US-ASCII
       string: ''
@@ -15,11 +15,11 @@ http_interactions:
       message: OK
     headers:
       Etag:
-      - 9ee44e306e6693d5618f5ab71cb7d3cec62a88fa
+      - 1148f05576666ce5a86b48659e3b0b9b61b64715
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 21 Feb 2017 20:08:05 GMT
+      - Tue, 28 Feb 2017 17:03:59 GMT
       Connection:
       - keep-alive
       Transfer-Encoding:
@@ -31,9 +31,9 @@ http_interactions:
         NyBNQVJWRUwiLCJhdHRyaWJ1dGlvblRleHQiOiJEYXRhIHByb3ZpZGVkIGJ5
         IE1hcnZlbC4gwqkgMjAxNyBNQVJWRUwiLCJhdHRyaWJ1dGlvbkhUTUwiOiI8
         YSBocmVmPVwiaHR0cDovL21hcnZlbC5jb21cIj5EYXRhIHByb3ZpZGVkIGJ5
-        IE1hcnZlbC4gwqkgMjAxNyBNQVJWRUw8L2E+IiwiZXRhZyI6IjllZTQ0ZTMw
-        NmU2NjkzZDU2MThmNWFiNzFjYjdkM2NlYzYyYTg4ZmEiLCJkYXRhIjp7Im9m
-        ZnNldCI6MCwibGltaXQiOjEsInRvdGFsIjozOTA1MiwiY291bnQiOjEsInJl
+        IE1hcnZlbC4gwqkgMjAxNyBNQVJWRUw8L2E+IiwiZXRhZyI6IjExNDhmMDU1
+        NzY2NjZjZTVhODZiNDg2NTllM2IwYjliNjFiNjQ3MTUiLCJkYXRhIjp7Im9m
+        ZnNldCI6MCwibGltaXQiOjEsInRvdGFsIjozOTA3NywiY291bnQiOjEsInJl
         c3VsdHMiOlt7ImlkIjo0MTUzMCwiZGlnaXRhbElkIjoyNzE1NywidGl0bGUi
         OiJBbnQtTWFuOiBTbyAoVHJhZGUgUGFwZXJiYWNrKSIsImlzc3VlTnVtYmVy
         IjowLCJ2YXJpYW50RGVzY3JpcHRpb24iOiIiLCJkZXNjcmlwdGlvbiI6Ikl0
@@ -107,5 +107,5 @@ http_interactions:
         LmNvbS92MS9wdWJsaWMvY29taWNzLzQxNTMwL2V2ZW50cyIsIml0ZW1zIjpb
         XSwicmV0dXJuZWQiOjB9fV19fQ==
     http_version: 
-  recorded_at: Tue, 21 Feb 2017 20:03:32 GMT
+  recorded_at: Tue, 28 Feb 2017 16:55:20 GMT
 recorded_with: VCR 3.0.3
