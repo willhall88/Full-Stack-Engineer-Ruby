@@ -14,18 +14,22 @@ describe('Favoriting', function() {
     fetchMock
       .mock('/favorites/toggle?id=1234', 'POST');
     const comic = {id:'1234', title: 'Hulk', 'thumbnail': 'some.url'};
-    const card = renderIntoDocument(
-      <ComicCard comic={comic} />
-    );
+    const card = renderIntoDocument(<ComicCard comic={comic} isFavorite={false} />);
     const link = findRenderedDOMComponentWithClass(card, 'c-comic__link');
     card._handleClick()
       .then(function() {
-        expect(card.state.isFavorite).to.be.true;
         expect(fetchMock.called('/favorites/toggle?id=1234')).to.be.true;
         done()
       })
       .catch(function(err) {
         done(err);
       })
+  });
+
+  it('showing existing favorites', function(){
+    const comic = {id:'1234', title: 'Hulk', 'thumbnail': 'some.url'};
+    const card = renderIntoDocument(<ComicCard comic={comic} isFavorite={true}/>);
+    const cardWrapper = findRenderedDOMComponentWithClass(card, 'c-comic__wrapper');
+    expect(cardWrapper.className).to.eq('c-comic__wrapper c-comic--favorite');
   });
 });

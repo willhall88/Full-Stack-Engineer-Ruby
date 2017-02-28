@@ -4,9 +4,6 @@ var classNames = require('classnames');
 class ComicCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isFavorite: false
-    }
     this._handleClick = this._handleClick.bind(this);
   }
 
@@ -15,9 +12,6 @@ class ComicCard extends React.Component {
       (resolve, reject) => {
         fetch(`/favorites/toggle?id=${this.props.comic.id}`, {method: 'POST'})
           .then((response) => {
-            this.setState(prevState => ({
-              isFavorite: !prevState.isFavorite
-            }));
             resolve();
           })
           .catch((error) => {
@@ -30,7 +24,7 @@ class ComicCard extends React.Component {
   render() {
     var classes = classNames({
       'c-comic__wrapper': true,
-      'c-comic--favorite': this.state.isFavorite
+      'c-comic--favorite': this.props.isFavorite
     });
     return(
       <div className={classes}>
