@@ -42,17 +42,20 @@
   transition: opacity 0.5s, transform 0.35s;
 }
 
-.c-comic__wrapper:hover .c-comic__cover-image {
+.c-comic__wrapper:hover .c-comic__cover-image,
+.c-comic--favorite .c-comic__cover-image {
   opacity: 0.4;
   transition: opacity 0.5s, transform 0.35s;
 }
 
-.c-comic__wrapper:hover .c-comic__title-wrapper {
+.c-comic__wrapper:hover .c-comic__title-wrapper,
+.c-comic--favorite .c-comic__title-wrapper {
   opacity: 1;
   transition: opacity 0.5s, transform 0.35s;
 }
 
-.c-comic__wrapper:hover .c-comic {
+.c-comic__wrapper:hover .c-comic,
+.c-comic--favorite .c-comic {
   border: red solid 1rem;
   transition: border 0.5s, transform 0.35s;
 }
