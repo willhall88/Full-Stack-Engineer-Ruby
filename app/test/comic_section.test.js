@@ -35,7 +35,7 @@ describe('Pagination', function() {
     comicSection._fetchPage(15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(15);
-        expect(fetchMock.called('/comics/index?offset=15'));
+        expect(fetchMock.called('/comics/index?offset=15')).to.be.true;
         done();
       })
       .catch(function(err) {
@@ -54,7 +54,7 @@ describe('Pagination', function() {
     comicSection._fetchPage(-15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(0);
-        expect(fetchMock.called('/comics/index?offset=0'));
+        expect(fetchMock.called('/comics/index?offset=0')).to.be.true;
         done();
       })
       .catch(function(err) {
