@@ -1,18 +1,20 @@
-# Streetbees Full Stack Engineer (Ruby) position
+### Getting Started
 
-[Role description](https://github.com/Streetbees/full-stack-engineer-ruby/wiki/Role-description)
+- Clone this repo
+- Run `bundle install`
+- Run `npm install`
+- Create a `.env` file with your own personal Marvel API keys
 
-[Requirements](https://github.com/Streetbees/full-stack-engineer-ruby/wiki/Requirements)
+### Running tests
+#### Rspec
+- `bundle exec rspec`
 
-[Benefits](https://github.com/Streetbees/full-stack-engineer-ruby/wiki/Benefits)
+#### Mocha
+- `npm test`
 
-
-### To apply you shoud follow the instructions below:
-
-- Fork this repo;
-- Look at the specification below and do your thing;
-- When ready open a pull into the master branch of this repo;
-- We will then review the code and if necessary discuss within the pull request.
+### Runnin locally
+- `bundle exec rails server`
+- visit http://localhost:3000
 
 ### Challenge spec:
 
@@ -36,5 +38,3 @@
     - you pay attention to details;
     - you develop in a scalable manner.
 
-- Deliverables
-    - The forked version of this repo.
