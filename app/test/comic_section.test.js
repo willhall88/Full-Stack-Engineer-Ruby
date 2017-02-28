@@ -13,19 +13,17 @@ import ComicSection from '../app/assets/javascripts/components/comic_section.es6
 
 describe('ComicSection component', function() {
   it('includes multiple ComicCard components', function() {
-    const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}, {id: 2, title: 'title', thumb: 'thumb'}], offset:0};
-    const comicSection = renderIntoDocument(
-      <ComicSection data={data} />
-    );
-    const instances = scryRenderedComponentsWithType(
-      comicSection,
-      ComicCard
-    ).length;
+    const data = {
+      comics:[{id: 1, title: 'title', thumb: 'thumb'}, {id: 2, title: 'title', thumb: 'thumb'}],
+      offset:0
+    };
+    const comicSection = renderIntoDocument(<ComicSection data={data} />);
+    const instances = scryRenderedComponentsWithType(comicSection, ComicCard).length;
     expect(instances).to.be.at.least(2);
   });
 });
 
-describe('pagination', function() {
+describe('Pagination', function() {
   it('changes to next page', function(done) {
     fetchMock
       .mock('/comics/index?offset=15', 'GET', {
@@ -33,9 +31,7 @@ describe('pagination', function() {
         offset:15
       });
     const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}], offset:0};
-    const comicSection = renderIntoDocument(
-      <ComicSection data={data} />
-    );
+    const comicSection = renderIntoDocument(<ComicSection data={data} />);
     comicSection._fetchPage(15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(15);
@@ -54,9 +50,7 @@ describe('pagination', function() {
         offset:0
       });
     const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:15};
-    const comicSection = renderIntoDocument(
-      <ComicSection data={data} />
-    );
+    const comicSection = renderIntoDocument(<ComicSection data={data} />);
     comicSection._fetchPage(-15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(0);
@@ -70,9 +64,7 @@ describe('pagination', function() {
 
   it('will not allow previous pages past first page', function(done) {
     const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:0};
-    const comicSection = renderIntoDocument(
-      <ComicSection data={data} />
-    );
+    const comicSection = renderIntoDocument(<ComicSection data={data} />);
     comicSection._fetchPage(-15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(0);

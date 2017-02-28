@@ -26,10 +26,11 @@ class ComicsSection extends React.Component {
     return new Promise(
       (resolve, reject) => {
         var newOffset = +this.state.offset + val;
-        if(newOffset < 0){
+        if (newOffset < 0) {
           resolve();
           return;
         };
+
         fetch(`/comics/index?offset=${newOffset}`)
           .then((response) => response.json())
           .then((responseJson) => {
