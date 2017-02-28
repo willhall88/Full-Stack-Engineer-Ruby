@@ -5,20 +5,45 @@ import {
   findRenderedDOMComponentWithClass,
   scryRenderedComponentsWithType
 } from 'react-addons-test-utils';
+var fetchMock = require('fetch-mock');
+fetchMock.greed = 'bad';
 
 import ComicCard from '../app/assets/javascripts/components/comic_card.es6.js';
 import ComicSection from '../app/assets/javascripts/components/comic_section.es6.js';
 
 describe('ComicSection component', function() {
-  it('should include multiple ComicCard components', function() {
-    var data = [{id: 1, title: 'title', thumb: 'thumb'}, {id: 2, title: 'title', thumb: 'thumb'}];
+  it('includes multiple ComicCard components', function() {
+    const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}, {id: 2, title: 'title', thumb: 'thumb'}], offset:0};
     const comicSection = renderIntoDocument(
-      <ComicSection comics={data} />
+      <ComicSection data={data} />
     );
     const instances = scryRenderedComponentsWithType(
       comicSection,
       ComicCard
     ).length;
     expect(instances).to.be.at.least(2);
+  });
+});
+
+describe('pagination', function() {
+  fetchMock
+    .mock('/comics/index?offset=15', 'GET', {
+      comics:[{id: 2, title: 'title2', thumb: 'thumb'}],
+      offset:15
+    });
+  it('changes pages', function(done) {
+    const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}], offset:0};
+    const comicSection = renderIntoDocument(
+      <ComicSection data={data} />
+    );
+    comicSection._fetchPage()
+      .then(function() {
+        expect(comicSection.state.offset).to.eq(15);
+        expect(fetchMock.called('/comics/index?offset=15'));
+        done();
+      })
+      .catch(function(err) {
+        done(err);
+      })
   });
 });
