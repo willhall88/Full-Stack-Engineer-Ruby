@@ -9,11 +9,6 @@ RSpec.describe MarvelApiClient do
     context 'when valid', :vcr do
       let(:comic_api) { MarvelApiClient.new(limit: 1) }
 
-      subject(:status) { comic_api.result_data['code'] }
-      it 'returns a 200 response code' do
-        expect(status).to eq 200
-      end
-
       subject(:comic_count) { comic_api.comics.count }
       it 'creates a Comic object' do
         expect(comic_count).to eq 1

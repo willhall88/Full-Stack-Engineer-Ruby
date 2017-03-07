@@ -2,7 +2,7 @@
 class MarvelApiClient
   DEFAULTS = { orderBy: '-onsaleDate', limit: 15, offset: 0 }
 
-  attr_reader :result_data, :comics, :options
+  attr_reader :comics, :options
 
   def initialize(params = {})
     @server = Marvelite::API::Client.new(
@@ -13,14 +13,22 @@ class MarvelApiClient
   end
 
   def perform
-    @result_data = @server.comics(@options)
-    process_data(@result_data)
+    @comics = Rails.cache.fetch(cache_key, expires_in: 24.hours) do
+      result_data = @server.comics(@options)
+      process_data(result_data)
+    end
   end
 
   def process_data(result_data)
     comics_data = result_data['data']['results']
-    @comics = comics_data.map do |comic_data|
+    comics_data.map do |comic_data|
       Comic.new(comic_data).build
     end
+  end
+
+  private
+
+  def cache_key
+    Digest::MD5.hexdigest(@options.to_s)
   end
 end
