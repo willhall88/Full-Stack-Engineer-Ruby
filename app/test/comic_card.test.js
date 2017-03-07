@@ -10,7 +10,7 @@ import ComicCard from '../app/assets/javascripts/components/comic_card.es6.js';
 
 describe('ComicCard', function() {
   it('renders', function() {
-    const comic = {'title': 'hello', 'thumbnail': 'some.url'};
+    const comic = {'id': '1', 'title': 'hello', 'thumbnail': 'some.url'};
     const card = renderIntoDocument(
       <ComicCard comic={comic} />
     );
@@ -18,7 +18,7 @@ describe('ComicCard', function() {
   });
 
   it('has a title', function() {
-    const comic = {'title': 'Title', 'thumbnail': 'some.url'};
+    const comic = {'id': '1', 'title': 'Title', 'thumbnail': 'some.url'};
     const card = renderIntoDocument(
       <ComicCard comic={comic} />
     );
@@ -28,7 +28,7 @@ describe('ComicCard', function() {
   });
 
   it('has a thumbnail', function() {
-    const comic = {'title': 'Title', 'thumbnail': 'some.url'};
+    const comic = {'id': '1', 'title': 'Title', 'thumbnail': 'some.url'};
     const card = renderIntoDocument(
       <ComicCard comic={comic} />
     );

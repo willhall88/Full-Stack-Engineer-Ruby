@@ -5,6 +5,9 @@ import {
   findRenderedDOMComponentWithClass,
   scryRenderedComponentsWithType
 } from 'react-addons-test-utils';
+import cookie from 'react-cookie';
+cookie.save('comic_ids', []);
+
 var fetchMock = require('fetch-mock');
 fetchMock.greed = 'bad';
 

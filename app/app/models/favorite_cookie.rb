@@ -2,11 +2,12 @@
 class FavoriteCookie
   def initialize(cookie)
     @cookie = cookie
-    @cookie.encrypted[:comic_ids] ||= []
+    @cookie[:comic_ids] ||= JSON.generate([])
+    list
   end
 
   def list
-    @cookie.encrypted[:comic_ids]
+    JSON.parse(@cookie[:comic_ids])
   end
 
   def toggle(id)
@@ -28,6 +29,6 @@ class FavoriteCookie
   private
 
   def set_cookie(comic_ids)
-    @cookie.encrypted[:comic_ids] = { value: comic_ids, expires: 1.month.from_now }
+    @cookie[:comic_ids] = { value: JSON.generate(comic_ids), expires: 1.month.from_now }
   end
 end

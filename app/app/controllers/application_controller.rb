@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
     @api.perform
     @offset = params[:offset] || 0
     @comics = @api.comics
-    { offset: @offset, comics: @comics }
+    { offset: @offset, comics: @comics, list: @favorite_list.list }
   end
 
   protected
 
   def load_favorites
-    @favorite_list = FavoriteCookie.new(cookies)
+    @favorite_list ||= FavoriteCookie.new(cookies)
   end
 end

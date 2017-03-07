@@ -1,17 +1,24 @@
 import React from 'react';
+import cookie from 'react-cookie';
 var classNames = require('classnames');
 
 class ComicCard extends React.Component {
   constructor(props) {
     super(props);
+    this.state =  { favorites: cookie.load('comic_ids') };
     this._handleClick = this._handleClick.bind(this);
   }
 
   _handleClick(e) {
     return new Promise(
       (resolve, reject) => {
-        fetch(`/favorites/toggle?id=${this.props.comic.id}`, {method: 'POST'})
-          .then((response) => {
+        fetch(`/favorites/toggle?id=${this.props.comic.id}`, {method: 'POST', credentials: 'include'})
+          .then((response) => response.json())
+          .then((responseJson) => {
+            cookie.save('comic_ids', responseJson.list);
+            this.setState({
+              favorites: responseJson.list
+            })
             resolve();
           })
           .catch((error) => {
@@ -24,7 +31,7 @@ class ComicCard extends React.Component {
   render() {
     var classes = classNames({
       'c-comic__wrapper': true,
-      'c-comic--favorite': this.props.isFavorite
+      'c-comic--favorite': this.state.favorites.includes(this.props.comic.id.toString())
     });
     return(
       <div className={classes}>

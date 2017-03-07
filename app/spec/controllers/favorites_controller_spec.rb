@@ -6,7 +6,16 @@ RSpec.describe FavoritesController, type: :controller do
     let(:favorite_cookie) { FavoriteCookie.new(cookies) }
     let(:comic_id) { '1234' }
 
+    context 'favorite list' do
+      subject {assigns(:favorite_list).class}
+      it 'has a list'do
+        post :toggle
+        is_expected.to eq FavoriteCookie
+      end
+    end
+
     context 'adding comics' do
+
       it 'adds to a cookie' do
         expect(favorite_cookie.list).to eq []
         post :toggle, params: {id: comic_id}, format: :json
