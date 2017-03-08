@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { expect } from 'chai';
+import { expect} from 'chai';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithClass,
@@ -7,7 +7,6 @@ import {
 } from 'react-addons-test-utils';
 import cookie from 'react-cookie';
 cookie.save('comic_ids', []);
-
 var fetchMock = require('fetch-mock');
 fetchMock.greed = 'bad';
 
@@ -65,16 +64,10 @@ describe('Pagination', function() {
       })
   });
 
-  it('will not allow previous pages past first page', function(done) {
+  it('will not allow previous pages past first page', function() {
     const data = {comics:[{id: 2, title: 'title2', thumb: 'thumb'}], offset:0};
     const comicSection = renderIntoDocument(<ComicSection comics={data.comics} offset={data.offset} />);
     comicSection._fetchPage(-15)
-      .then(function() {
-        expect(comicSection.state.offset).to.eq(0);
-        done();
-      })
-      .catch(function(err) {
-        done(err);
-      })
+    expect(comicSection.state.offset).to.eq(0);
   });
 });
