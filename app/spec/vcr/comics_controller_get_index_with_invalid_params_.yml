@@ -1,0 +1,31 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://gateway.marvel.com/v1/public/comics?apikey=0bf84a0c159cc7d2bb990d32da985b27&characters=wrong&hash=d334105d32b358b83ac23e59ffa15a9b&limit=15&offset=bad&orderBy=-onsaleDate&ts=1489101757
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 09 Mar 2017 23:31:24 GMT
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"code":409,"status":"You must pass at least one valid character if
+        you set the character filter."}'
+    http_version: 
+  recorded_at: Thu, 09 Mar 2017 23:22:37 GMT
+recorded_with: VCR 3.0.3

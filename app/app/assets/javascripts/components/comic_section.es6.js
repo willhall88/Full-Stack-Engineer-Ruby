@@ -7,7 +7,8 @@ class ComicsSection extends React.Component {
     super(props);
     this.state = {
       comics: props.comics,
-      offset: props.offset
+      offset: props.offset,
+      characters: []
     };
 
     this._handleClick = this._handleClick.bind(this);
@@ -36,7 +37,8 @@ class ComicsSection extends React.Component {
           .then((responseJson) => {
             this.setState({
               comics: responseJson.comics,
-              offset: +responseJson.offset
+              offset: +responseJson.offset,
+              characters: responseJson.characters
             });
             resolve();
           })
@@ -52,7 +54,8 @@ class ComicsSection extends React.Component {
     if (newOffset < 0) {
       return;
     };
-    var url = `/comics/index?offset=${newOffset}`;
+    var url = `/comics/index?offset=${newOffset}&characters=${this.state.characters}`;
+    console.log(url);
     return this._fetch(url);
   }
 

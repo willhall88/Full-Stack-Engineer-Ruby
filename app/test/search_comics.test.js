@@ -18,14 +18,16 @@ describe('Searching', function() {
     fetchMock
       .mock('/comics/search?character=hulk', 'GET', {
         comics: comic,
-        offset: 0
+        offset: 0,
+        characters: [2]
       });
     const data = {comics:[{id: 1, title: 'title', thumb: 'thumb'}], offset:0};
     const comicSection = renderIntoDocument(<ComicSection comics={data.comics} offset={data.offset} />);
     comicSection._searchCharacter('hulk')
       .then(function() {
         expect(fetchMock.called('/comics/search?character=hulk')).to.be.true;
-        expect(comicSection.state.comics[0]['title']).to.eq('hulk smash');
+        expect(comicSection.state.comics).to.eql(comic);
+        expect(comicSection.state.characters).to.eql([2])
         done();
       })
       .catch(function(err) {

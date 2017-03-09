@@ -28,7 +28,7 @@ describe('ComicSection component', function() {
 describe('Pagination', function() {
   it('changes to next page', function(done) {
     fetchMock
-      .mock('/comics/index?offset=15', 'GET', {
+      .mock('/comics/index?offset=15&characters=', 'GET', {
         comics:[{id: 2, title: 'title2', thumb: 'thumb'}],
         offset:15
       });
@@ -37,7 +37,7 @@ describe('Pagination', function() {
     comicSection._fetchPage(15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(15);
-        expect(fetchMock.called('/comics/index?offset=15')).to.be.true;
+        expect(fetchMock.called('/comics/index?offset=15&characters=')).to.be.true;
         done();
       })
       .catch(function(err) {
@@ -47,7 +47,7 @@ describe('Pagination', function() {
 
   it('changes to prev page', function(done) {
     fetchMock
-      .mock('/comics/index?offset=0', 'GET', {
+      .mock('/comics/index?offset=0&characters=', 'GET', {
         comics:[{id: 1, title: 'title', thumb: 'thumb'}],
         offset:0
       });
@@ -56,7 +56,7 @@ describe('Pagination', function() {
     comicSection._fetchPage(-15)
       .then(function() {
         expect(comicSection.state.offset).to.eq(0);
-        expect(fetchMock.called('/comics/index?offset=0')).to.be.true;
+        expect(fetchMock.called('/comics/index?offset=0&characters=')).to.be.true;
         done();
       })
       .catch(function(err) {
