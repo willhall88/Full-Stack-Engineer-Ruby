@@ -1,30 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe MarvelApiClient do
+  let(:comic_api) { MarvelApiClient.new }
+  before(:each) do
+    Rails.cache.clear
+  end
+
   describe '#perform' do
-    before(:each) do
-      comic_api.perform(limit: 1)
+    context 'when valid', :vcr do
+      before(:each) do
+        comic_api.perform(limit: 1)
+      end
+      it { expect(comic_api.comics).to be_instance_of(Array) }
+      it { expect(comic_api.comics.first.keys).to eq [:id, :title, :thumbnail] }
     end
 
-    context 'when valid', :vcr do
-      let(:comic_api) { MarvelApiClient.new }
-
-      subject(:comic_count) { comic_api.comics.count }
-      it 'creates a Comic object' do
-        expect(comic_count).to eq 1
+    context 'when invalid', :vcr do
+      before(:each) do
+        comic_api.perform(limit: 1, offset: 'bad', characters: 'nope')
+      end
+      it do
+        result = { error: "You must pass at least one valid character if you set the character filter." }
+        expect(comic_api.comics).to eq result
       end
     end
-
-    # context 'when invalid', :vcr do
-    # end
   end
 
   describe '#search_characters' do
     context 'when valid', :vcr do
-      let(:comic_api) { MarvelApiClient.new }
       subject(:character_count) { comic_api.search_characters('hulk').length }
       it 'can find multiple characters' do
         expect(character_count).to eq 9
+      end
+    end
+
+    context 'when empty search', :vcr do
+      subject(:character_count) { comic_api.search_characters('').length }
+      it 'can find multiple characters' do
+        expect(character_count).to eq 0
       end
     end
   end
