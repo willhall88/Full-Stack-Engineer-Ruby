@@ -30,13 +30,7 @@ RSpec.describe ComicsController, type: :controller do
     end
 
     context 'with invalid params', :vcr do
-      before (:each) do
-        get :index, params: { offset: 'bad', characters: 'wrong' }
-      end
-
-      it { expect(assigns[:offset]).to eq 0 }
-      it { expect(assigns[:comics]).to eq [] }
-      it { expect(assigns[:character_ids]).to eq [] }
+      it { expect { get :index, params: { offset: 'bad', characters: 'wrong' } }.to raise_error(Exception) }
     end
   end
 

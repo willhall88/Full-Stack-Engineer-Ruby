@@ -16,7 +16,11 @@ class ComicsController < ApplicationController
 
   def load_render
     @comics = @api.comics
-    reset_params if @comics.is_a?(Hash) && @comics[:error]
+    if @comics.is_a?(Hash) && @comics[:error]
+      error = @comics[:error]
+      reset_params
+      raise Exception.new(error)
+    end
     render json: {
       offset: @offset,
       comics: @comics,
