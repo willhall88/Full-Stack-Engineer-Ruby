@@ -8,7 +8,7 @@ class ComicsSection extends React.Component {
     this.state = {
       comics: props.comics,
       offset: props.offset,
-      characters: []
+      characters: ''
     };
 
     this._handleClick = this._handleClick.bind(this);
@@ -55,7 +55,6 @@ class ComicsSection extends React.Component {
       return;
     };
     var url = `/comics/index?offset=${newOffset}&characters=${this.state.characters}`;
-    console.log(url);
     return this._fetch(url);
   }
 

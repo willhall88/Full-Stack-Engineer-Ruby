@@ -12,7 +12,8 @@ class MarvelApiClient
   end
 
   def perform(params = {})
-    @options = DEFAULTS.merge(params)
+    valid_params = params.delete_if { |_, v| v.blank? }
+    @options = DEFAULTS.merge(valid_params)
     @comics = Rails.cache.fetch(cache_key(@options), expires_in: 24.hours) do
       result_data = @server.comics(@options)
       process_data(result_data)
